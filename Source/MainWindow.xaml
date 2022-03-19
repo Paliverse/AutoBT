@@ -1,0 +1,149 @@
+﻿<Window x:Name="myMainWindow" x:Class="AutoBT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoBT"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        mc:Ignorable="d"
+        Title="AutoBT" Height="1080" Width="1920" WindowStartupLocation="CenterScreen" SourceInitialized="Window_SourceInitialized" ResizeMode="CanResizeWithGrip" Closing="Window_Closing" MinHeight="480" MouseDown="window_MouseDown">
+
+    <Grid Name="MainGrid" SizeChanged="MainGrid_SizeChanged" >
+        <Grid.LayoutTransform>
+            <ScaleTransform x:Name="ApplicationScaleTransform"
+                        CenterX="0"
+                        CenterY="0"
+                        ScaleX="{Binding ElementName=myMainWindow, Path=ScaleValue}"
+                        ScaleY="{Binding ElementName=myMainWindow, Path=ScaleValue}" />
+        </Grid.LayoutTransform>
+        <DockPanel>
+            <Grid x:Name="MainMenuGrid" DockPanel.Dock="Top" Height="40" VerticalAlignment="Top">
+
+                <Rectangle x:Name="App_Rec1" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,0" >
+                    <Menu VerticalContentAlignment="Stretch" Height="40" Margin="20,0,0,0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left">
+                        <MenuItem x:Name="MenuHome" Icon="Assets/Main.ico" FontSize="24" FontWeight="SemiBold" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Margin="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Click="MenuHome_Click" UseLayoutRounding="True">
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="{StaticResource FA_Pro_Light}" Text="" VerticalAlignment="Center" FontSize="30"/>
+                                    <ContentPresenter Content="Home"  VerticalAlignment="Center" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem x:Name="MenuSettings" FontSize="24" Height="40" FontWeight="SemiBold" VerticalContentAlignment="Top" Margin="20,0,0,0" HorizontalContentAlignment="Stretch" Click="MenuSettings_Click">
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="{StaticResource FA_Pro_Light}" Text="" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="30"/>
+                                    <ContentPresenter Content="Settings" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem x:Name="MenuInfo" FontSize="24" Height="40" FontWeight="SemiBold" VerticalContentAlignment="Top" Margin="20,0,0,0" HorizontalContentAlignment="Stretch" Click="MenuInfo_Click">
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="{StaticResource FA_Pro_Light}" Text="" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="30"/>
+                                    <ContentPresenter Content="Info" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </StackPanel>
+
+                <Label Content="AutoBT" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="36"/>
+
+
+                <Grid x:Name="MainMenuGrid_selection" DockPanel.Dock="Top" Height="5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle x:Name="App_Rec2"/>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                        <Rectangle x:Name="MenuHomeRectangle" Width="{Binding ActualWidth, ElementName=MenuHome, Mode=OneWay}" Fill="{Binding Foreground, ElementName=hiddenSlider}" Height="4" />
+                        <Rectangle x:Name="MenuSettingsRectangle" Width="{Binding ActualWidth, ElementName=MenuSettings, Mode=OneWay}" Fill="{Binding Foreground, ElementName=hiddenSlider}" Margin="20,0,0,0" Height="4" />
+                        <Rectangle x:Name="MenuHelpRectangle" Width="{Binding ActualWidth, ElementName=MenuInfo, Mode=OneWay}" Fill="{Binding Foreground, ElementName=hiddenSlider}" Margin="20,0,0,0" Height="4" />
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+            <Grid x:Name="Content0" DockPanel.Dock="Top" >
+                <Grid x:Name="HomePageGrid">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <StackPanel HorizontalAlignment="Left" MinWidth="300">
+                            <Label Content="List of Devices" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                            <ListView x:Name="ListOfDevicesFound" Margin="20,30,20,5"  MaxHeight="630" MinWidth="300" SelectionChanged="ListOfDevicesFound_SelectionChanged">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,5,0,5" >
+                                            <Label Background="#00000000" BorderBrush="#00000000" Margin="0,0,0,0" FontSize="18" FontFamily="Segoe UI"  Content="{Binding BT_DeviceName}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <Button x:Name="RefreshBTList" Content="Refresh List" HorizontalAlignment="Center" FontSize="24" Margin="0,50,0,0" Width="200" Click="RefreshBTList_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Label Content="Select a Device to view info" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/> 
+                    <Grid x:Name="DetailedDeviceInfoGrid" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+                        <Border Margin="0" Background="{Binding Background, ElementName=MacSyle_BoxBackground}" BorderBrush="{Binding Background, ElementName=MacSyle_BoxBackgroundBorder}" CornerRadius="5"  BorderThickness="2" >
+                            <Grid Margin="20,30,20,10">
+                                <Label x:Name="DetailedDeviceInfo_DeviceNameTitle" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalContentAlignment="Center" FontSize="40" FontFamily="Segoe UI Semibold" Content="Device Name"/>
+                                <Border CornerRadius="10" BorderBrush="{Binding Background, ElementName=MacSyle_BoxWithinBorder}" Background="{Binding Background, ElementName=MacSyle_BoxWithin}" Margin="0,60,0,10"  BorderThickness="3" >
+                                    <StackPanel Margin="20,0,20,20">
+                                        <StackPanel Margin="0,10,0,0">
+                                            <Label Content="Device name" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="0,0,0,0" FontWeight="Bold"/>
+                                            <Label x:Name="DetailedDeviceInfo_DeviceName" Content="Hello" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="0,0,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="0,20,0,0">
+                                            <Label Content="MAC Address" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="0,0,0,0" FontWeight="Bold"/>
+                                            <Label x:Name="DetailedDeviceInfo_MacAddress" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="0,0,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="0,20,0,0">
+                                            <Label Content="Is Authenticated (Paired)" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="0,0,0,0" FontWeight="Bold"/>
+                                            <Label x:Name="DetailedDeviceInfo_IsAuthinticated" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="0,0,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="0,20,0,0">
+                                            <Label Content="Is Connected" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="0,0,0,0" FontWeight="Bold"/>
+                                            <Label x:Name="DetailedDeviceInfo_IsConnected" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="0,0,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="0,20,0,0">
+                                            <Label Content="List of installed Services GUID (Checked in device properties)" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="0,0,0,0"/>
+                                            <TextBox x:Name="DetailedDeviceInfo_ListOfServices" Background="#00000000" BorderBrush="#00000000" Margin="0,0,0,0" FontSize="18" FontFamily="Segoe UI" TextWrapping="Wrap" IsReadOnly="True" Text="hello"/>
+                                        </StackPanel>
+                                        <Button x:Name="DetailedDeviceInfo_SaveGuidButton" Content="Save Installed services (GUID)" Margin="0,20,0,0" FontSize="24" HorizontalAlignment="Center" Click="DetailedDeviceInfo_SaveGuidButton_Click" />
+                                        <Label Content="Saving is required for Connecting and Disconnecting Device" FontSize="20" Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,20,0,0">
+                                            <Button x:Name="DetailedDeviceInfo_ConnectButton" Content="Connect" FontSize="24" Click="Connect_Click" Width="250" IsEnabled="False"/>
+                                            <Button x:Name="DetailedDeviceInfo_DisconnectButton" Content="Disconnect" Margin="30,0,0,0" FontSize="24" Click="Disconnect_Click" Width="250" IsEnabled="False"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+
+                </Grid>
+
+                <Grid x:Name="SettingsPageGrid" Visibility="Hidden">
+
+                </Grid>
+
+                <Grid x:Name="InfoPageGrid" Visibility="Hidden">
+
+                </Grid>
+
+            </Grid>
+
+        </DockPanel>
+        <Border x:Name="MacStyle_Background" Background="#FF221D2A" CornerRadius="13"  Opacity="0" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
+        <Border x:Name="MacSyle_BoxBackground" Background="#FF18141D" CornerRadius="13"  Opacity="0" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
+        <Border x:Name="MacSyle_BoxBackgroundBorder" Background="#000000" CornerRadius="13"  Opacity="0" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
+        <Border x:Name="MacSyle_BoxWithin" Background="#FF1F1B24"  CornerRadius="13"  Opacity="0" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
+        <Border x:Name="MacSyle_BoxWithinBorder" Background="#FF26232B"  CornerRadius="13"  Opacity="0" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
+        <Slider x:Name="hiddenSlider" Visibility="Hidden"/>
+    </Grid>
+</Window>

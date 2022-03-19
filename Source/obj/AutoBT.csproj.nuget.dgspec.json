@@ -1,0 +1,90 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\moham\\Documents\\AutoBT\\AutoBT.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\moham\\Documents\\AutoBT\\AutoBT.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\moham\\Documents\\AutoBT\\AutoBT.csproj",
+        "projectName": "AutoBT",
+        "projectPath": "C:\\Users\\moham\\Documents\\AutoBT\\AutoBT.csproj",
+        "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\moham\\Documents\\AutoBT\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "32feet.NET": {
+              "target": "Package",
+              "version": "[3.5.0, )"
+            },
+            "Hardcodet.NotifyIcon.Wpf": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.Windows.SDK.Contracts": {
+              "target": "Package",
+              "version": "[10.0.18362.2005, )"
+            },
+            "ModernWpfUI": {
+              "target": "Package",
+              "version": "[0.9.4, )"
+            },
+            "System.Runtime.WindowsRuntime": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "System.Runtime.WindowsRuntime.UI.Xaml": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "System.ValueTuple": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            }
+          },
+          "imports": [
+            "uap10.0.18362"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "i40TRq78SN4m0N7IhRvICa6HrQa9+SRj1XrNmHIC8oni6tI42Y2DDD9EPlFq3PeGzJgQ3KHPzwGXLo1sZtuQJA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\moham\\Documents\\AutoBT\\AutoBT.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\moham\\.nuget\\packages\\32feet.net\\3.5.0\\32feet.net.3.5.0.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\hardcodet.notifyicon.wpf\\1.1.0\\hardcodet.notifyicon.wpf.1.1.0.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\modernwpfui\\0.9.4\\modernwpfui.0.9.4.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
